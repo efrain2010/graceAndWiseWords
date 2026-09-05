@@ -1,4 +1,5 @@
 import type { APIRoute } from 'astro';
+import { env } from 'cloudflare:env';
 import { validateForm } from '../../lib/validate';
 import { verifyTurnstileToken } from '../../lib/turnstileVerify';
 import { buildConfirmationEmail } from '../../emails/confirmationEmail';
@@ -29,7 +30,7 @@ export const POST: APIRoute = async (context) => {
     }
 
     // Verify Turnstile token
-    const turnstileSecret = context.locals.runtime?.env?.TURNSTILE_SECRET_KEY;
+    const turnstileSecret = env.TURNSTILE_SECRET_KEY;
     if (!turnstileSecret) {
       console.error('TURNSTILE_SECRET_KEY not configured');
       return new Response(
@@ -54,10 +55,10 @@ export const POST: APIRoute = async (context) => {
     }
 
     // Get email config
-    const fromAddress = context.locals.runtime?.env?.CONTACT_FROM_ADDRESS || 'hello@gracewisewords.com';
-    const ownerAddress = context.locals.runtime?.env?.OWNER_NOTIFICATION_ADDRESS || 'owner@gracewisewords.com';
-    const businessName = context.locals.runtime?.env?.BUSINESS_NAME || 'Grace & Wise Words';
-    const emailBinding = context.locals.runtime?.env?.EMAIL;
+    const fromAddress = env.CONTACT_FROM_ADDRESS || 'hello@gracewisewords.com';
+    const ownerAddress = env.OWNER_NOTIFICATION_ADDRESS || 'owner@gracewisewords.com';
+    const businessName = env.BUSINESS_NAME || 'Grace & Wise Words';
+    const emailBinding = env.EMAIL;
 
     if (!emailBinding) {
       console.error('EMAIL binding not configured');

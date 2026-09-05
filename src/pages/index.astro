@@ -1,5 +1,4 @@
 ---
-import { getLocaleFromUrl } from 'astro:i18n';
 import BaseLayout from '../layouts/BaseLayout.astro';
 import Header from '../components/Header.astro';
 import Hero from '../components/Hero.astro';
@@ -11,13 +10,15 @@ export const prerender = true;
 
 const locale = 'en' as const;
 const dict = getDictionary(locale);
+// Use build-time environment variable for prerendered pages
+const turnstileSiteKey = import.meta.env.PUBLIC_TURNSTILE_SITE_KEY || 'placeholder';
 ---
 
 <BaseLayout title="Grace & Wise Words — Retreats in Galicia" description="Discover magical reading retreats in Galicia, Spain. Inspired by Celtic heritage, ancient history, and the wisdom of the land." lang={locale}>
   <div class="font-sans bg-cream text-dark-text overflow-x-hidden">
     <Header locale={locale} />
     <Hero locale={locale} />
-    <ContactSection locale={locale} turnstileSiteKey={Astro.locals.runtime?.env?.TURNSTILE_SITE_KEY || 'placeholder'} />
+    <ContactSection locale={locale} turnstileSiteKey={turnstileSiteKey} />
     <Footer locale={locale} />
   </div>
 

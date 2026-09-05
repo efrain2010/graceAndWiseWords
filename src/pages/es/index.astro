@@ -10,13 +10,15 @@ export const prerender = true;
 
 const locale = 'es' as const;
 const dict = getDictionary(locale);
+// Use build-time environment variable for prerendered pages
+const turnstileSiteKey = import.meta.env.PUBLIC_TURNSTILE_SITE_KEY || 'placeholder';
 ---
 
 <BaseLayout title="Grace & Wise Words — Retiros en Galicia" description="Descubre retiros mágicos de lectura en Galicia, España. Inspirado por la herencia celta, la historia antigua y la sabiduría de la tierra." lang={locale}>
   <div class="font-sans bg-cream text-dark-text overflow-x-hidden">
     <Header locale={locale} />
     <Hero locale={locale} />
-    <ContactSection locale={locale} turnstileSiteKey={Astro.locals.runtime?.env?.TURNSTILE_SITE_KEY || 'placeholder'} />
+    <ContactSection locale={locale} turnstileSiteKey={turnstileSiteKey} />
     <Footer locale={locale} />
   </div>
 
