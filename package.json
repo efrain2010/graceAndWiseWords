@@ -12,8 +12,9 @@
     "@astrojs/cloudflare": "*",
     "@astrojs/tailwind": "*",
     "@tailwindcss/postcss": "^4.3.3",
+    "@tailwindcss/vite": "^4.3.3",
     "astro": "*",
     "postal-mime": "*",
-    "tailwindcss": "*"
+    "tailwindcss": "^4.3.3"
   }
 }
