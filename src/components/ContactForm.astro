@@ -1,0 +1,202 @@
+---
+import { getDictionary } from '../i18n/utils';
+
+interface Props {
+  locale: 'en' | 'es' | 'gl';
+  turnstileSiteKey: string;
+}
+
+const { locale, turnstileSiteKey } = Astro.props;
+const dict = getDictionary(locale);
+const contactDict = dict.contact;
+const formDict = contactDict.form;
+---
+
+<div id="contact-form-container" data-locale={locale}>
+  {/* Form State */}
+  <form
+    id="contact-form"
+    class="bg-cream-accent px-7 md:px-11 py-7 md:py-11 rounded-sm flex flex-col gap-6"
+    data-form-state="form"
+  >
+    {/* Full Name */}
+    <div class="flex flex-col gap-2">
+      <label for="name" class="text-xs md:text-xs tracking-widest uppercase text-brown-muted">
+        {formDict.nameRequired}
+      </label>
+      <input
+        type="text"
+        id="name"
+        name="name"
+        required
+        placeholder={formDict.namePlaceholder}
+        class="px-3.5 py-3 border border-brown-light rounded-sm bg-cream text-base font-sans text-dark-text placeholder-brown-muted"
+      />
+    </div>
+
+    {/* Gender and Age Row */}
+    <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+      {/* Gender */}
+      <div class="flex flex-col gap-2">
+        <label for="gender" class="text-xs md:text-xs tracking-widest uppercase text-brown-muted">
+          {contactDict.form.gender}
+        </label>
+        <select
+          id="gender"
+          name="gender"
+          class="px-3.5 py-3 border border-brown-light rounded-sm bg-cream text-base font-sans text-dark-text"
+        >
+          <option value="">{formDict.genderOptions.blank}</option>
+          <option value="female">{formDict.genderOptions.female}</option>
+          <option value="male">{formDict.genderOptions.male}</option>
+          <option value="non-binary">{formDict.genderOptions.nonBinary}</option>
+        </select>
+      </div>
+
+      {/* Age */}
+      <div class="flex flex-col gap-2">
+        <label for="age" class="text-xs md:text-xs tracking-widest uppercase text-brown-muted">
+          {formDict.ageRequired}
+        </label>
+        <input
+          type="number"
+          id="age"
+          name="age"
+          required
+          min="18"
+          max="110"
+          placeholder={formDict.agePlaceholder}
+          class="px-3.5 py-3 border border-brown-light rounded-sm bg-cream text-base font-sans text-dark-text placeholder-brown-muted"
+        />
+      </div>
+    </div>
+
+    {/* Email */}
+    <div class="flex flex-col gap-2">
+      <label for="email" class="text-xs md:text-xs tracking-widest uppercase text-brown-muted">
+        {formDict.emailRequired}
+      </label>
+      <input
+        type="email"
+        id="email"
+        name="email"
+        required
+        placeholder={formDict.emailPlaceholder}
+        class="px-3.5 py-3 border border-brown-light rounded-sm bg-cream text-base font-sans text-dark-text placeholder-brown-muted"
+      />
+    </div>
+
+    {/* Turnstile Widget Placeholder */}
+    <div class="border border-dashed border-brown-dull rounded-sm p-4 flex items-center justify-center min-h-[65px] max-w-[300px]">
+      <div id="cf-turnstile" data-sitekey={turnstileSiteKey}></div>
+    </div>
+
+    {/* Hidden locale field */}
+    <input type="hidden" name="locale" value={locale} />
+
+    {/* Submit Button */}
+    <button
+      type="submit"
+      class="py-3.75 bg-gold text-deep-brown border-0 rounded-sm text-xs tracking-widest uppercase font-semibold cursor-pointer font-sans hover:bg-gold-light transition-colors"
+    >
+      {formDict.submit}
+    </button>
+
+    {/* Error Message */}
+    <div id="form-error" class="hidden text-red-600 text-sm"></div>
+  </form>
+
+  {/* Success State */}
+  <div
+    id="contact-success"
+    class="bg-cream-accent px-7 md:px-16 py-10 md:py-16 rounded-sm text-center flex flex-col items-center gap-4.5 hidden"
+    data-form-state="success"
+  >
+    <div class="w-13 h-13 rounded-full bg-gold text-deep-brown flex items-center justify-center text-2xl font-bold">
+      ✓
+    </div>
+    <h3 class="m-0 font-serif text-2xl font-medium text-dark-text">
+      {contactDict.success.heading}
+    </h3>
+    <p class="m-0 text-base md:text-base leading-7 text-dark-text-secondary max-w-[420px]">
+      {contactDict.success.message}
+    </p>
+    <a
+      id="edit-details-btn"
+      class="text-xs tracking-widest uppercase text-muted-green border-b border-muted-green pb-0.5 cursor-pointer hover:text-gold transition-colors"
+    >
+      {contactDict.success.editButton}
+    </a>
+  </div>
+</div>
+
+<script>
+  const formContainer = document.getElementById('contact-form-container');
+  const contactForm = document.getElementById('contact-form') as HTMLFormElement;
+  const contactSuccess = document.getElementById('contact-success');
+  const formError = document.getElementById('form-error');
+  const editDetailsBtn = document.getElementById('edit-details-btn');
+  const locale = formContainer?.getAttribute('data-locale');
+
+  contactForm?.addEventListener('submit', async (e) => {
+    e.preventDefault();
+
+    const formData = new FormData(contactForm);
+    const name = formData.get('name') as string;
+    const gender = formData.get('gender') as string;
+    const age = formData.get('age') as string;
+    const email = formData.get('email') as string;
+
+    // Basic client-side validation
+    if (!name.trim() || !age || !email.trim()) {
+      if (formError) formError.textContent = 'Please fill in all required fields';
+      if (formError) formError.classList.remove('hidden');
+      return;
+    }
+
+    // Get Turnstile token
+    const turnstileToken = (window as any).turnstile?.getResponse?.();
+    if (!turnstileToken) {
+      if (formError) formError.textContent = 'Please complete the verification';
+      if (formError) formError.classList.remove('hidden');
+      return;
+    }
+
+    try {
+      const response = await fetch('/api/contact', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({
+          name,
+          gender: gender || undefined,
+          age,
+          email,
+          locale,
+          turnstileToken,
+        }),
+      });
+
+      const result = await response.json();
+
+      if (result.success) {
+        // Hide form, show success
+        contactForm?.classList.add('hidden');
+        if (contactSuccess) contactSuccess.classList.remove('hidden');
+      } else {
+        if (formError) formError.textContent = result.error || 'Submission failed. Please try again.';
+        if (formError) formError.classList.remove('hidden');
+      }
+    } catch (error) {
+      if (formError) formError.textContent = 'An error occurred. Please try again.';
+      if (formError) formError.classList.remove('hidden');
+    }
+  });
+
+  editDetailsBtn?.addEventListener('click', () => {
+    contactForm?.classList.remove('hidden');
+    if (contactSuccess) contactSuccess.classList.add('hidden');
+    if (formError) formError.classList.add('hidden');
+    contactForm?.reset();
+    (window as any).turnstile?.reset?.();
+  });
+</script>

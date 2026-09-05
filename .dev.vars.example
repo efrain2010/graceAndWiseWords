@@ -1,0 +1,7 @@
+# Turnstile secret key (get from Cloudflare dashboard or use test key)
+# Test keys: always-pass or always-block modes available
+TURNSTILE_SECRET_KEY=1x00000000000000000000AA
+
+# Email configuration (use placeholder until domain is onboarded)
+CONTACT_FROM_ADDRESS=hello@example.com
+OWNER_NOTIFICATION_ADDRESS=owner@example.com

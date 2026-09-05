@@ -1,0 +1,19 @@
+{
+  "name": "grace-wise-words",
+  "version": "1.0.0",
+  "type": "module",
+  "scripts": {
+    "dev": "astro dev",
+    "build": "astro build",
+    "preview": "astro preview",
+    "check": "astro check"
+  },
+  "dependencies": {
+    "@astrojs/cloudflare": "*",
+    "@astrojs/tailwind": "*",
+    "@tailwindcss/postcss": "^4.3.3",
+    "astro": "*",
+    "postal-mime": "*",
+    "tailwindcss": "*"
+  }
+}

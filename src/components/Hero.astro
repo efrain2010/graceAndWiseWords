@@ -1,0 +1,59 @@
+---
+import { getDictionary } from '../i18n/utils';
+
+interface Props {
+  locale: 'en' | 'es' | 'gl';
+}
+
+const { locale } = Astro.props;
+const dict = getDictionary(locale);
+const heroDict = dict.hero;
+---
+
+<section id="hero" class="relative min-h-[96vh] flex items-end justify-center overflow-hidden">
+  {/* Background image */}
+  <div class="absolute inset-0 pointer-events-none">
+    <img
+      src="/images/hero-door.jpg"
+      alt="Weathered wood door framed by ivy"
+      class="w-full h-full object-cover"
+      loading="eager"
+    />
+  </div>
+
+  {/* Dark gradient overlay */}
+  <div class="absolute inset-0 bg-gradient-to-b from-black/35 via-black/40 to-black/92 pointer-events-none"></div>
+
+  {/* Content card */}
+  <div
+    class="relative z-10 max-w-[640px] mx-6 py-12 md:py-14 px-7 md:px-12 text-center text-cream bg-deep-brown rounded-sm shadow-2xl mb-12 md:mb-14"
+  >
+    <p class="m-0 mb-3.5 text-xs md:text-xs tracking-widest uppercase text-gold">
+      {heroDict.eyebrow}
+    </p>
+    <h1 class="m-0 font-serif italic font-normal text-4xl md:text-5xl lg:text-6xl leading-tight">
+      {heroDict.title}
+    </h1>
+    <p class="m-0 mt-3.5 font-serif text-sm md:text-base text-brown-lighter">
+      {heroDict.subtitle}
+    </p>
+
+    <p class="m-0 mt-6 md:mt-7 text-base md:text-lg leading-relaxed text-cream-accent max-w-[520px] mx-auto">
+      <span class="text-sm md:text-xs tracking-widest uppercase">{heroDict.description}</span>
+    </p>
+
+    <a
+      href={heroDict.contactLink}
+      class="inline-block mt-9 px-9 py-3.75 bg-gold text-deep-brown text-xs tracking-widest uppercase rounded-sm font-semibold hover:bg-gold-light transition-colors"
+    >
+      {heroDict.cta}
+    </a>
+  </div>
+</section>
+
+<style>
+  /* Ensure proper spacing and sizing */
+  section#hero {
+    background: linear-gradient(to bottom, rgba(30, 21, 15, 0.35) 0%, rgba(30, 21, 15, 0.4) 55%, rgba(30, 21, 15, 0.92) 100%);
+  }
+</style>

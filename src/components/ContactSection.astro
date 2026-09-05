@@ -1,0 +1,33 @@
+---
+import ContactForm from './ContactForm.astro';
+import { getDictionary } from '../i18n/utils';
+
+interface Props {
+  locale: 'en' | 'es' | 'gl';
+  turnstileSiteKey: string;
+}
+
+const { locale, turnstileSiteKey } = Astro.props;
+const dict = getDictionary(locale);
+const contactDict = dict.contact;
+---
+
+<section id="contact" class="py-16 md:py-30 px-5 md:px-20 bg-cream">
+  <div class="max-w-[640px] mx-auto">
+    {/* Section Header */}
+    <div class="text-center mb-11">
+      <p class="m-0 mb-3.5 text-xs md:text-xs tracking-widest uppercase text-muted-green">
+        {contactDict.eyebrow}
+      </p>
+      <h2 class="m-0 mb-4 font-serif text-3xl md:text-4xl font-medium text-dark-text">
+        {contactDict.heading}
+      </h2>
+      <p class="m-0 text-base md:text-base leading-7 text-dark-text-secondary">
+        {contactDict.intro}
+      </p>
+    </div>
+
+    {/* Contact Form */}
+    <ContactForm locale={locale} turnstileSiteKey={turnstileSiteKey} />
+  </div>
+</section>

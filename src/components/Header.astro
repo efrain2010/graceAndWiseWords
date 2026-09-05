@@ -1,0 +1,74 @@
+---
+import { getDictionary } from '../i18n/utils';
+
+interface Props {
+  locale: 'en' | 'es' | 'gl';
+}
+
+const { locale } = Astro.props;
+const dict = getDictionary(locale);
+
+const locales: { code: 'en' | 'es' | 'gl'; label: string }[] = [
+  { code: 'en', label: 'EN' },
+  { code: 'es', label: 'ES' },
+  { code: 'gl', label: 'GL' },
+];
+
+function getLocaleUrl(localeCode: string): string {
+  if (localeCode === 'en') return '/';
+  return `/${localeCode}/`;
+}
+---
+
+<header
+  class="sticky top-0 z-50 flex flex-wrap items-center justify-between gap-3 md:gap-7 px-5 md:px-14 py-4 bg-black/90 backdrop-blur-md"
+>
+  <a href={dict.header.heroLink} class="font-serif text-sm md:text-xl tracking-widest text-cream">
+    {dict.header.logo}
+  </a>
+  <nav class="flex flex-wrap items-center gap-5 md:gap-5 text-xs md:text-xs tracking-widest uppercase">
+    <div class="flex gap-2 md:gap-2.5">
+      {locales.map((l) => (
+        <div>
+          {l.code === locale ? (
+            <span class="text-gold">{l.label}</span>
+          ) : (
+            <a href={getLocaleUrl(l.code)} class="text-cream-accent hover:text-gold">
+              {l.label}
+            </a>
+          )}
+        </div>
+      ))}
+      {locales.length > 0 && (
+        <>
+          <span class="text-brown-muted">/</span>
+          <div>
+            {locales[1] && locales[1].code === locale ? (
+              <span class="text-gold">{locales[1].label}</span>
+            ) : locales[1] ? (
+              <a href={getLocaleUrl(locales[1].code)} class="text-cream-accent hover:text-gold">
+                {locales[1].label}
+              </a>
+            ) : null}
+          </div>
+          <span class="text-brown-muted">/</span>
+          <div>
+            {locales[2] && locales[2].code === locale ? (
+              <span class="text-gold">{locales[2].label}</span>
+            ) : locales[2] ? (
+              <a href={getLocaleUrl(locales[2].code)} class="text-cream-accent hover:text-gold">
+                {locales[2].label}
+              </a>
+            ) : null}
+          </div>
+        </>
+      )}
+    </div>
+  </nav>
+</header>
+
+<style>
+  header {
+    background: rgba(36, 26, 19, 0.9);
+  }
+</style>

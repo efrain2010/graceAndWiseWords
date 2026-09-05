@@ -1,0 +1,41 @@
+---
+import { getDictionary } from '../i18n/utils';
+
+interface Props {
+  locale: 'en' | 'es' | 'gl';
+}
+
+const { locale } = Astro.props;
+const dict = getDictionary(locale);
+const footerDict = dict.footer;
+const currentYear = new Date().getFullYear();
+---
+
+<footer class="bg-deep-brown text-cream-accent px-5 md:px-20 py-11 flex flex-wrap justify-between gap-6 items-center">
+  <div>
+    <p class="m-0 font-serif text-lg text-cream">{footerDict.businessName}</p>
+  </div>
+
+  <div class="flex gap-3.5">
+    {/* Instagram */}
+    <a href="#" aria-label="Instagram" class="w-9.5 h-9.5 rounded-full border border-brown-muted flex items-center justify-center hover:border-gold transition-colors">
+      <span class="relative w-4.25 h-4.25 border-1.5 border-cream-accent rounded-1 block">
+        <span class="absolute top-1/2 left-1/2 w-2 h-2 border-1.5 border-cream-accent rounded-full transform -translate-x-1/2 -translate-y-1/2"></span>
+        <span class="absolute -top-0.375 -right-0.375 w-0.75 h-0.75 bg-cream-accent rounded-full"></span>
+      </span>
+    </a>
+
+    {/* TikTok */}
+    <a href="#" aria-label="TikTok" class="w-9.5 h-9.5 rounded-full border border-brown-muted flex items-center justify-center hover:border-gold transition-colors">
+      <span class="relative w-4 h-4.25 block">
+        <span class="absolute top-0 right-0.5 w-0.75 h-3.25 bg-cream-accent rounded-0.375"></span>
+        <span class="absolute top-0 right-0.125 w-1.5 h-1.5 border-1.5 border-cream-accent rounded-full border-b-0 border-l-0"></span>
+        <span class="absolute bottom-0 left-0 w-2 h-2 bg-cream-accent rounded-full"></span>
+      </span>
+    </a>
+  </div>
+
+  <p class="m-0 text-xs text-brown-pale">
+    {footerDict.copyright.replace('{year}', currentYear.toString())}
+  </p>
+</footer>

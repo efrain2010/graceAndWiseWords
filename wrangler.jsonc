@@ -1,0 +1,23 @@
+{
+  "name": "grace-wise-words",
+  "compatibility_date": "2024-12-01",
+  "compatibility_flags": ["nodejs_compat"],
+
+  "env": {
+    "production": {
+      "routes": [
+        {
+          "pattern": "gracewisewords.com/*",
+          "zone_name": "gracewisewords.com"
+        }
+      ]
+    }
+  },
+
+  "vars": {
+    "TURNSTILE_SITE_KEY": "placeholder_site_key",
+    "CONTACT_FROM_ADDRESS": "hello@gracewisewords.com",
+    "OWNER_NOTIFICATION_ADDRESS": "owner@gracewisewords.com",
+    "BUSINESS_NAME": "Grace & Wise Words"
+  }
+}

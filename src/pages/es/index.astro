@@ -1,0 +1,24 @@
+---
+import BaseLayout from '../../layouts/BaseLayout.astro';
+import Header from '../../components/Header.astro';
+import Hero from '../../components/Hero.astro';
+import ContactSection from '../../components/ContactSection.astro';
+import Footer from '../../components/Footer.astro';
+import { getDictionary } from '../../i18n/utils';
+
+export const prerender = true;
+
+const locale = 'es' as const;
+const dict = getDictionary(locale);
+---
+
+<BaseLayout title="Grace & Wise Words — Retiros en Galicia" description="Descubre retiros mágicos de lectura en Galicia, España. Inspirado por la herencia celta, la historia antigua y la sabiduría de la tierra." lang={locale}>
+  <div class="font-sans bg-cream text-dark-text overflow-x-hidden">
+    <Header locale={locale} />
+    <Hero locale={locale} />
+    <ContactSection locale={locale} turnstileSiteKey={Astro.locals.runtime?.env?.TURNSTILE_SITE_KEY || 'placeholder'} />
+    <Footer locale={locale} />
+  </div>
+
+  <script src="https://challenges.cloudflare.com/turnstile/v0/api.js" async defer></script>
+</BaseLayout>
