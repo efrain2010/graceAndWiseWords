@@ -1,7 +1,5 @@
 @import url('https://fonts.googleapis.com/css2?family=EB+Garamond:ital,wght@0,400;0,500;1,400&family=Work+Sans:wght@400;500;600&display=swap');
 
-@import "tailwindcss";
-
 @layer base {
   html {
     @apply scroll-smooth;
@@ -16,7 +14,7 @@
   }
 
   a {
-    @apply text-inherit no-underline transition-colors duration-150 ease-in-out;
+    @apply text-inherit no-underline transition-colors duration-150;
   }
 
   a:hover {
