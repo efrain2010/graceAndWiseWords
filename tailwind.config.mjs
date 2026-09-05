@@ -2,6 +2,10 @@
 export default {
   content: ['./src/**/*.{astro,html,js,jsx,md,mdx,ts,tsx}'],
   theme: {
+    fontFamily: {
+      serif: ['EB Garamond', 'serif'],
+      sans: ['Work Sans', 'sans-serif'],
+    },
     extend: {
       colors: {
         cream: '#f4ead9',
@@ -19,10 +23,6 @@ export default {
         'brown-pale': '#8a7a63',
         'brown-dull': '#a8977c',
         'black': '#241a13',
-      },
-      fontFamily: {
-        serif: ['EB Garamond', 'serif'],
-        sans: ['Work Sans', 'sans-serif'],
       },
       spacing: {
         '0.375': '0.375rem',
