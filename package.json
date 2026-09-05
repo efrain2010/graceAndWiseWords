@@ -10,10 +10,10 @@
   },
   "dependencies": {
     "@astrojs/cloudflare": "*",
-    "@astrojs/tailwind": "*",
     "@tailwindcss/postcss": "^4.3.3",
     "@tailwindcss/vite": "^4.3.3",
     "astro": "*",
+    "autoprefixer": "^10.5.5",
     "postal-mime": "*",
     "tailwindcss": "^4.3.3"
   }
