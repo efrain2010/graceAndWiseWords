@@ -24,6 +24,7 @@ const isDevelopmentDomain = Astro.url.hostname.includes('workers.dev');
     <meta property="og:type" content="website" />
     <meta property="og:url" content={canonicalURL} />
     <link rel="canonical" href={canonicalURL} />
+    {isDevelopmentDomain && <meta name="robots" content="noindex, nofollow" />}
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
     <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
