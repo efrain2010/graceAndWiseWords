@@ -7,8 +7,8 @@
     "production": {
       "routes": [
         {
-          "pattern": "gracewisewords.com/*",
-          "zone_name": "gracewisewords.com"
+          "pattern": "graceandwisewords.efrain-villanueva3.workers.dev/*",
+          "zone_name": "graceandwisewords.efrain-villanueva3.workers.dev"
         }
       ]
     }
