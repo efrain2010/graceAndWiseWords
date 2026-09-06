@@ -1,6 +1,6 @@
-# Grace & Wise Words — Galicia Reading Retreats
+# lendalore — Galicia Reading Retreats
 
-A single-page, fully responsive marketing site for Grace & Wise Words, offering mystical reading retreats in Galicia, Spain. Built with Astro, Tailwind CSS, and Cloudflare Workers.
+A single-page, fully responsive marketing site for lendalore, offering mystical reading retreats in Galicia, Spain. Built with Astro, Tailwind CSS, and Cloudflare Workers.
 
 ## Tech Stack
 
@@ -255,4 +255,4 @@ Once domain + Turnstile are set up:
 
 ## License
 
-All rights reserved © 2026 Grace & Wise Words
+All rights reserved © 2026 lendalore

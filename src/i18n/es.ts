@@ -1,11 +1,11 @@
 export default {
   header: {
-    logo: 'Grace & Wise Words',
+    logo: 'lendalore',
     heroLink: '#hero',
   },
   hero: {
     eyebrow: 'Entra en la historia de',
-    title: 'Grace & Wise Words',
+    title: 'lendalore',
     subtitle: 'Algo está germinando en Galicia',
     description: 'Inspirado por la naturaleza gallega, la herencia celta, la historia antigua y la sabiduría de la tierra',
     cta: 'Sigue lo que se está desplegando',
@@ -42,8 +42,8 @@ export default {
     },
   },
   footer: {
-    businessName: 'Grace & Wise Words',
-    copyright: '© {year} Grace & Wise Words. Todos los derechos reservados.',
+    businessName: 'lendalore',
+    copyright: '© {year} lendalore. Todos los derechos reservados.',
   },
   emails: {
     confirmation: {
@@ -52,7 +52,7 @@ export default {
       body: 'Tu nota ha cruzado la puerta de hiedra y nos ha alcanzado. Agradecemos tu interés en caminar juntos en este sendero.',
       followUp: 'Alguien de nuestro círculo se pondrá en contacto contigo personalmente dentro de unos días para compartir más sobre el camino que nos espera.',
       closing: 'Con cálidos saludos,',
-      signature: 'Grace & Wise Words',
+      signature: 'lendalore',
     },
     notification: {
       subject: 'Nueva consulta de retiro — {name}',

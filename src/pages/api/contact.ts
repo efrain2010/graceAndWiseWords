@@ -57,7 +57,7 @@ export const POST: APIRoute = async (context) => {
     // Get email config
     const fromAddress = env.CONTACT_FROM_ADDRESS || 'hello@gracewisewords.com';
     const ownerAddress = env.OWNER_NOTIFICATION_ADDRESS || 'owner@gracewisewords.com';
-    const businessName = env.BUSINESS_NAME || 'Grace & Wise Words';
+    const businessName = env.BUSINESS_NAME || 'lendalore';
     const emailBinding = env.EMAIL;
 
     if (!emailBinding) {
