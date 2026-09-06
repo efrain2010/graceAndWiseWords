@@ -38,7 +38,7 @@ Astro (`output: "server"`, `@astrojs/cloudflare` adapter) deployed as a Cloudfla
 
 ## Known-incomplete setup
 
-The app builds and deploys as-is, but several things are placeholder/manual-setup-only (see README "Manual Prerequisites" section for full steps): the domain isn't yet onboarded to Cloudflare Email Sending (emails silently no-op until then), `TURNSTILE_SITE_KEY`/`TURNSTILE_SECRET_KEY` in `wrangler.jsonc`/`.dev.vars` are placeholders, GitHub Actions deploy secrets aren't configured, and the Hero background image at `public/images/hero-door.jpg` is a placeholder.
+The app builds and deploys as-is, but several things are placeholder/manual-setup-only (see README "Manual Prerequisites" section for full steps): the domain isn't yet onboarded to Cloudflare Email Sending (emails silently no-op until then), `TURNSTILE_SITE_KEY`/`TURNSTILE_SECRET_KEY` in `wrangler.jsonc`/`.dev.vars` are placeholders, and GitHub Actions deploy secrets aren't configured.
 
 ## Misc
 
