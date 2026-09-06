@@ -45,7 +45,7 @@ const heroDict = dict.hero;
     <p class="m-0 mb-3.5 text-xs md:text-xs tracking-widest uppercase text-gold">
       {heroDict.eyebrow}
     </p>
-    <h1 class="m-0 font-serif italic font-normal text-4xl md:text-5xl lg:text-6xl leading-tight">
+    <h1 class="m-0 hero-title text-5xl md:text-7xl lg:text-8xl leading-tight lowercase">
       {heroDict.title}
     </h1>
     <p class="m-0 mt-3.5 font-serif text-sm md:text-base text-brown-lighter">
@@ -76,6 +76,12 @@ const heroDict = dict.hero;
 
   #parallax-bg {
     will-change: transform;
+  }
+
+  .hero-title {
+    font-family: "Lavishly Yours", serif;
+    font-weight: normal;
+    letter-spacing: 0.05em;
   }
 </style>
 

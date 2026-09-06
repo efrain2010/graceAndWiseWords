@@ -1,11 +1,11 @@
 export default {
   header: {
-    logo: 'Grace & Wise Words',
+    logo: 'lendalore',
     heroLink: '#hero',
   },
   hero: {
     eyebrow: 'Enter the story of',
-    title: 'Grace & Wise Words',
+    title: 'lendalore',
     subtitle: 'Something is taking root in Galicia',
     description: 'Inspired by Galician nature, Celtic heritage, ancient history and the wisdom of the land',
     cta: 'Follow what is unfolding',
@@ -42,8 +42,8 @@ export default {
     },
   },
   footer: {
-    businessName: 'Grace & Wise Words',
-    copyright: '© {year} Grace & Wise Words. All rights reserved.',
+    businessName: 'lendalore',
+    copyright: '© {year} lendalore. All rights reserved.',
   },
   emails: {
     confirmation: {
@@ -52,7 +52,7 @@ export default {
       body: 'Your note has crossed the ivy gate and reached us. We are grateful for your interest in walking this path together.',
       followUp: 'Someone from our circle will follow up personally within a few days to share more about the journey ahead.',
       closing: 'With warm regards,',
-      signature: 'Grace & Wise Words',
+      signature: 'lendalore',
     },
     notification: {
       subject: 'New retreat inquiry — {name}',

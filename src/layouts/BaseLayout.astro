@@ -9,6 +9,7 @@ interface Props {
 
 const { title, description, lang } = Astro.props;
 const canonicalURL = new URL(Astro.url.pathname, Astro.site);
+const isDevelopmentDomain = Astro.url.hostname.includes('workers.dev');
 ---
 
 <!DOCTYPE html>
