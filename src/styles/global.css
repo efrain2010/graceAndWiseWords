@@ -1,4 +1,4 @@
-@import url('https://fonts.googleapis.com/css2?family=EB+Garamond:ital,wght@0,400;0,500;1,400&family=Work+Sans:wght@400;500;600&display=swap');
+@import url("https://fonts.googleapis.com/css2?family=EB+Garamond:ital,wght@0,400;0,500;1,400&family=Work+Sans:wght@400;500;600&display=swap");
 
 @config "../../tailwind.config.mjs";
 
@@ -6,16 +6,63 @@
 @tailwind components;
 @tailwind utilities;
 
+@layer theme, base, components, utilities;
+@import "tailwindcss/theme.css" layer(theme);
+@import "tailwindcss/preflight.css" layer(base);
+@import "tailwindcss/utilities.css" layer(utilities);
+
+@theme {
+  --cream: #f4ead9;
+  --deep-brown: #241a13;
+  --deep-brown-dark: #1a120d;
+  --dark-text: #2c2016;
+  --dark-text-secondary: #4a3c2c;
+  --gold: #b98a3e;
+  --gold-light: #d1a55e;
+  --muted-green: #445c3c;
+  --cream-accent: #e9dcc4;
+  --brown-light: #c9b998;
+  --brown-lighter: #cbb99a;
+  --brown-muted: #6b5c48;
+  --brown-pale: #8a7a63;
+  --brown-dull: #a8977c;
+  --text-dark-text: font;
+
+  --font-serif: "EB Garamond", serif;
+  --font-sans: "Work Sans", sans-serif;
+}
+
+@utility text-dark-text {
+  color: var(--dark-text);
+}
+
+@utility text-gold-light {
+  color: var(--gold-light);
+}
+
+@utility border-gold-light {
+  border-color: var(--gold-light);
+}
+
+@utility border-gold {
+  border-color: var(--gold);
+}
+
 @layer base {
   html {
     @apply scroll-smooth;
   }
 
   body {
-    @apply font-sans bg-cream text-dark-text;
+    @apply font-sans text-dark-text;
   }
 
-  h1, h2, h3, h4, h5, h6 {
+  h1,
+  h2,
+  h3,
+  h4,
+  h5,
+  h6 {
     @apply font-serif;
   }
 
