@@ -11,8 +11,8 @@ const heroDict = dict.hero;
 ---
 
 <section id="hero" class="relative min-h-[96vh] flex items-end justify-center overflow-hidden">
-  {/* Background image */}
-  <div class="absolute inset-0 pointer-events-none">
+  {/* Background image with parallax */}
+  <div class="absolute inset-0 overflow-hidden pointer-events-none" id="parallax-container">
     <picture>
       <source
         type="image/webp"
@@ -30,6 +30,7 @@ const heroDict = dict.hero;
         alt="Misty forest path with moss-covered logs"
         class="w-full h-full object-cover"
         loading="eager"
+        id="parallax-bg"
       />
     </picture>
   </div>
@@ -39,7 +40,7 @@ const heroDict = dict.hero;
 
   {/* Content card */}
   <div
-    class="relative z-10 max-w-[640px] mx-6 py-12 md:py-14 px-7 md:px-12 text-center text-cream bg-deep-brown rounded-sm shadow-2xl mb-12 md:mb-14"
+    class="relative z-10 max-w-[640px] mx-6 py-12 md:py-14 px-7 md:px-12 text-center text-cream bg-white/10 backdrop-blur-xl border border-white/20 rounded-lg shadow-2xl mb-12 md:mb-14"
   >
     <p class="m-0 mb-3.5 text-xs md:text-xs tracking-widest uppercase text-gold">
       {heroDict.eyebrow}
@@ -65,8 +66,35 @@ const heroDict = dict.hero;
 </section>
 
 <style>
-  /* Ensure proper spacing and sizing */
   section#hero {
     background: linear-gradient(to bottom, rgba(30, 21, 15, 0.35) 0%, rgba(30, 21, 15, 0.4) 55%, rgba(30, 21, 15, 0.92) 100%);
   }
+
+  #parallax-container {
+    will-change: transform;
+  }
+
+  #parallax-bg {
+    will-change: transform;
+  }
 </style>
+
+<script>
+  const parallaxContainer = document.getElementById('parallax-container');
+  const parallaxBg = document.getElementById('parallax-bg');
+
+  if (parallaxContainer && parallaxBg) {
+    const heroSection = parallaxContainer.closest('section#hero');
+
+    window.addEventListener('scroll', () => {
+      const rect = heroSection.getBoundingClientRect();
+      const scrolled = window.scrollY;
+      const elementOffset = scrolled + rect.top;
+
+      if (scrolled < elementOffset + heroSection.offsetHeight) {
+        const parallaxDistance = (scrolled - elementOffset) * 0.5;
+        parallaxBg.style.transform = `translateY(${parallaxDistance}px)`;
+      }
+    }, { passive: true });
+  }
+</script>
