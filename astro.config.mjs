@@ -3,7 +3,7 @@ import cloudflare from "@astrojs/cloudflare";
 import tailwindcss from "@tailwindcss/vite";
 
 export default defineConfig({
-  site: "https://gracewisewords.com",
+  site: "https://graceandwisewords.efrain-villanueva3.workers.dev",
   output: "server",
   adapter: cloudflare(),
   vite: {
