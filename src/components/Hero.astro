@@ -13,12 +13,25 @@ const heroDict = dict.hero;
 <section id="hero" class="relative min-h-[96vh] flex items-end justify-center overflow-hidden">
   {/* Background image */}
   <div class="absolute inset-0 pointer-events-none">
-    <img
-      src="/images/hero-door.jpg"
-      alt="Weathered wood door framed by ivy"
-      class="w-full h-full object-cover"
-      loading="eager"
-    />
+    <picture>
+      <source
+        type="image/webp"
+        srcset="
+          /images/hero-forest-640.webp 640w,
+          /images/hero-forest-960.webp 960w,
+          /images/hero-forest-1280.webp 1280w,
+          /images/hero-forest-1920.webp 1920w,
+          /images/hero-forest-2560.webp 2560w
+        "
+        sizes="100vw"
+      />
+      <img
+        src="/images/hero-forest-1920.jpg"
+        alt="Misty forest path with moss-covered logs"
+        class="w-full h-full object-cover"
+        loading="eager"
+      />
+    </picture>
   </div>
 
   {/* Dark gradient overlay */}

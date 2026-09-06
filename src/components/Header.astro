@@ -27,9 +27,9 @@ function getLocaleUrl(localeCode: string): string {
     {dict.header.logo}
   </a>
   <nav class="flex flex-wrap items-center gap-5 md:gap-5 text-xs md:text-xs tracking-widest uppercase">
-    <div class="flex gap-2 md:gap-2.5">
-      {locales.map((l) => (
-        <div>
+    <div class="flex items-center gap-2 md:gap-2.5">
+      {locales.map((l, i) => (
+        <>
           {l.code === locale ? (
             <span class="text-gold">{l.label}</span>
           ) : (
@@ -37,32 +37,9 @@ function getLocaleUrl(localeCode: string): string {
               {l.label}
             </a>
           )}
-        </div>
-      ))}
-      {locales.length > 0 && (
-        <>
-          <span class="text-brown-muted">/</span>
-          <div>
-            {locales[1] && locales[1].code === locale ? (
-              <span class="text-gold">{locales[1].label}</span>
-            ) : locales[1] ? (
-              <a href={getLocaleUrl(locales[1].code)} class="text-cream-accent hover:text-gold">
-                {locales[1].label}
-              </a>
-            ) : null}
-          </div>
-          <span class="text-brown-muted">/</span>
-          <div>
-            {locales[2] && locales[2].code === locale ? (
-              <span class="text-gold">{locales[2].label}</span>
-            ) : locales[2] ? (
-              <a href={getLocaleUrl(locales[2].code)} class="text-cream-accent hover:text-gold">
-                {locales[2].label}
-              </a>
-            ) : null}
-          </div>
+          {i < locales.length - 1 && <span class="text-brown-muted">/</span>}
         </>
-      )}
+      ))}
     </div>
   </nav>
 </header>
